@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Ormont_Light";
+  src: url("~src/assets/fonts/Ormont_Light.ttf") format("woff2"), url("~src/assets/fonts/Ormont_Light.ttf") format("ttf");
+}
+
+body {
+  font-family: "Ormont_Light", Helvetica Neue, Helvetica, Arial, sans-serif;
+
+  .page {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 150px;
+
+    &.one {
+      background-image: url('~src/assets/images/one.png');
+    }
+
+    &.two {
+      background-image: url('~src/assets/images/two.png');
+    }
+
+    &.three {
+      background-image: url('~src/assets/images/three.png');
+    }
+
+    &.four {
+      background-image: url('~src/assets/images/four.png');
+    }
+
+    &.five {
+      background-image: url('~src/assets/images/five.png');
+    }
+  }
+}

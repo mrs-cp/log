@@ -1,0 +1,43 @@
+.profile-img {
+  background-image: url("~src/assets/images/profile-img.jpg");
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  background-size: cover;
+}
+
+ul.cv {
+  margin: 2.5em 0;
+}
+
+ul.cv li {
+  list-style: none;
+  min-height: 50px;
+  border-left: 1px dashed darkgrey;
+  padding: 0 0 50px 30px;
+  position: relative;
+}
+
+ul.cv li:last-child {
+  border-left: 0;
+  padding: 0 0 0 30px
+}
+
+ul.cv li::before {
+  position: absolute;
+  left: -16px;
+  top: -5px;
+  content: " ";
+  border: 10px solid darkgrey;
+  border-radius: 500%;
+  background: pink;
+  height: 30px;
+  width: 30px;
+  transition: all 500ms ease-in-out;
+}
+
+ul.cv li:hover::before {
+  border-color: black;
+  transition: all 500ms ease-in-out;
+}
+

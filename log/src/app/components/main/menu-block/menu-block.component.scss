@@ -1,0 +1,39 @@
+
+.grid {
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 2fr 2fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+
+  .yellow, .grey, .blue, .pink {
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20vh;
+    box-shadow: inset 0.5em 0.5em 3.5em white;
+  }
+
+  .yellow {
+    background-image: url(~src/assets/images/yellow.png);
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .blue {
+    background-image: url(~src/assets/images/blue.png);
+    grid-column: 2/5;
+    grid-row: 1/1;
+  }
+
+  .pink {
+    background-image: url(~src/assets/images/pink.png);
+    grid-column: 1/4;
+    grid-row: 2/2;
+  }
+
+  .grey {
+    background-image: url(~src/assets/images/grey.png);
+    grid-column: 4/5;
+    grid-row: 2/2;
+  }
+
+}
