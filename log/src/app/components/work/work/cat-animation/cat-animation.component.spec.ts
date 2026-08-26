@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { CatAnimationComponent } from './cat-animation.component';
 
-describe('CatAnimationComponent', () => {
-  let component: CatAnimationComponent;
-  let fixture: ComponentFixture<CatAnimationComponent>;
+describe(CatAnimationComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(CatAnimationComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CatAnimationComponent ]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CatAnimationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the Good Night heading and preview image', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'Good Night' })).toBeInTheDocument();
+    expect(screen.getByText('- Wide-Screen Pure CSS Animation -')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'good night animation' })).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('embeds the CodePen demo', async () => {
+    await renderComponent();
+    expect(screen.getByTitle('Good Night Cat CSS Drawing & Animation')).toBeInTheDocument();
   });
 });

@@ -1,28 +1,27 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { render } from '@testing-library/angular';
+import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+describe(AppComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(AppComponent, {
+      providers: [provideRouter([])],
+    });
+    return { renderResult };
+  }
+
+  it('creates the app', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it(`has 'log' as the title`, async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance.title).toEqual('log');
   });
 
-  it(`should have 'log' as the title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('log');
+  it('renders a router-outlet', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.container.querySelector('router-outlet')).toBeInTheDocument();
   });
 });

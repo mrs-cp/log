@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { TramAnimationComponent } from './tram-animation.component';
 
-describe('TramAnimationComponent', () => {
-  let component: TramAnimationComponent;
-  let fixture: ComponentFixture<TramAnimationComponent>;
+describe(TramAnimationComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(TramAnimationComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TramAnimationComponent ]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TramAnimationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the Tram Animation heading and preview image', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'Tram Animation' })).toBeInTheDocument();
+    expect(screen.getByText('- Animated with anime.js -')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'tram animation' })).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('embeds the CodePen demo', async () => {
+    await renderComponent();
+    expect(screen.getByTitle('tram animation with animejs')).toBeInTheDocument();
   });
 });

@@ -1,27 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render } from '@testing-library/angular';
+import { provideRouter } from '@angular/router';
 import { MainComponent } from './main.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
-describe('MainComponent', () => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+describe(MainComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(MainComponent, {
+      providers: [provideRouter([])],
+    });
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MainComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MainComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders the menu block with all four navigation tiles', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.container.querySelector('log-menu-block')).toBeInTheDocument();
+    expect(renderResult.container.querySelector('.yellow')).toBeInTheDocument();
+    expect(renderResult.container.querySelector('.blue')).toBeInTheDocument();
+    expect(renderResult.container.querySelector('.pink')).toBeInTheDocument();
+    expect(renderResult.container.querySelector('.grey')).toBeInTheDocument();
   });
 });

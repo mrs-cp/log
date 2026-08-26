@@ -1,25 +1,34 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { StackComponent } from './stack.component';
 
-describe('StackComponent', () => {
-  let component: StackComponent;
-  let fixture: ComponentFixture<StackComponent>;
+describe(StackComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(StackComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ StackComponent ]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(StackComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the Techstack/Skills heading', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'Techstack/Skills' })).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('lists the technical and language skills', async () => {
+    await renderComponent();
+    expect(screen.getByText('TypeScript')).toBeInTheDocument();
+    expect(screen.getByText('Angular')).toBeInTheDocument();
+    expect(screen.getByText('English')).toBeInTheDocument();
+    expect(screen.getByText('Japanese')).toBeInTheDocument();
+  });
+
+  it('gives TypeScript a full five-star rating', async () => {
+    await renderComponent();
+    const skillRow = screen.getByText('TypeScript').closest('li') as HTMLElement;
+    const filledStars = skillRow.querySelectorAll('.text-bs-success');
+    expect(filledStars).toHaveLength(5);
   });
 });

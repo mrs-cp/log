@@ -1,25 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { AboutComponent } from './about.component';
 
-describe('AboutComponent', () => {
-  let component: AboutComponent;
-  let fixture: ComponentFixture<AboutComponent>;
+describe(AboutComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(AboutComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AboutComponent ]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AboutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the About heading and breadcrumb', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'About' })).toBeInTheDocument();
+    expect(screen.getByText('Home')).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders the Work Experience and Education sections', async () => {
+    await renderComponent();
+    expect(screen.getByText('Work Experience')).toBeInTheDocument();
+    expect(screen.getByText('Education')).toBeInTheDocument();
+  });
+
+  it('lists the current job', async () => {
+    await renderComponent();
+    expect(screen.getByText('Software Developer (Angular)')).toBeInTheDocument();
+    expect(screen.getByText('- BVV, Berlin')).toBeInTheDocument();
   });
 });

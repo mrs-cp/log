@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Bootstrap 5.3 breakpoints (verified in node_modules/bootstrap/dist/css/bootstrap.css) --
+     Tailwind's defaults (640/768/1024) only coincidentally match Bootstrap's md; sm and lg differ. */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+
+  /* Bootstrap 5.3 exact values actually used in this app's templates (verified in bootstrap.css) */
+  --color-bs-muted: rgba(33, 37, 41, 0.75);
+  --color-bs-success: #198754;
+  --color-bs-border: #dee2e6;
+  --color-bs-card-border: rgba(0, 0, 0, 0.175);
+  --color-bs-card-header-bg: rgba(33, 37, 41, 0.03);
+  --color-bs-secondary-bg: #e2e3e5;
+  --color-bs-secondary-border: #c4c8cb;
+}
+
+@font-face {
+  font-family: "Ormont_Light";
+  src: url("/assets/fonts/Ormont_Light.ttf") format("woff2"), url("/assets/fonts/Ormont_Light.ttf") format("ttf");
+}
+
+body {
+  font-family: "Ormont_Light", Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.page {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 150px;
+}
+
+.page.one {
+  background-image: url("/assets/images/one.png");
+}
+
+.page.two {
+  background-image: url("/assets/images/two.png");
+}
+
+.page.three {
+  background-image: url("/assets/images/three.png");
+}
+
+.page.four {
+  background-image: url("/assets/images/four.png");
+}
+
+.page.five {
+  background-image: url("/assets/images/five.png");
+}
+
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 0.5rem;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding-right: 0.5rem;
+  color: var(--color-bs-muted);
+  content: "/";
+}

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'log-links',
-  templateUrl: './links.component.html',
-  styleUrls: ['./links.component.scss']
+    selector: 'log-links',
+    templateUrl: './links.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class LinksComponent implements OnInit {
 

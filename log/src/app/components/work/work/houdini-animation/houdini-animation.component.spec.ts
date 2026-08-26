@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { HoudiniAnimationComponent } from './houdini-animation.component';
 
-describe('HoudiniAnimationComponent', () => {
-  let component: HoudiniAnimationComponent;
-  let fixture: ComponentFixture<HoudiniAnimationComponent>;
+describe(HoudiniAnimationComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(HoudiniAnimationComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ HoudiniAnimationComponent ]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HoudiniAnimationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the Colour Blend heading and preview image', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'Colour Blend' })).toBeInTheDocument();
+    expect(screen.getByText('- Animation with CSS-Houdini -')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'houdini animation' })).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('embeds the CodePen demo', async () => {
+    await renderComponent();
+    expect(screen.getByTitle('CSS Coudini Colour Blend Animation')).toBeInTheDocument();
   });
 });

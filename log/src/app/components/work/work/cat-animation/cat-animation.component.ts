@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'log-cat-animation',
   templateUrl: './cat-animation.component.html',
-  styleUrls: ['./cat-animation.component.scss']
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager
 })
-export class CatAnimationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class CatAnimationComponent {
 }

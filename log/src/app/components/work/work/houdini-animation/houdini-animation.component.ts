@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'log-houdini-animation',
   templateUrl: './houdini-animation.component.html',
-  styleUrls: ['./houdini-animation.component.scss']
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager
 })
-export class HoudiniAnimationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class HoudiniAnimationComponent {
 
 }

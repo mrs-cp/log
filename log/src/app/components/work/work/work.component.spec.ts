@@ -1,27 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { WorkComponent } from './work.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
-describe('WorkComponent', () => {
-  let component: WorkComponent;
-  let fixture: ComponentFixture<WorkComponent>;
+describe(WorkComponent.name, () => {
+  async function renderComponent() {
+    const renderResult = await render(WorkComponent);
+    return { renderResult };
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ WorkComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+  it('creates', async () => {
+    const { renderResult } = await renderComponent();
+    expect(renderResult.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WorkComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('renders the breadcrumb for the Work/Animations page', async () => {
+    await renderComponent();
+    expect(screen.getByText('Work/Animations')).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renders all four animation demos', async () => {
+    await renderComponent();
+    expect(screen.getByRole('heading', { name: 'Good Night' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Colour Blend' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Tram Animation' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Leipzig Tram Network' })).toBeInTheDocument();
   });
 });

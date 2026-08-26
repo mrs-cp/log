@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CatAnimationComponent } from './cat-animation/cat-animation.component';
+import { TramNetworkAnimationComponent } from './tram-network-animation/tram-network-animation.component';
+import { TramAnimationComponent } from './tram-animation/tram-animation.component';
+import { HoudiniAnimationComponent } from './houdini-animation/houdini-animation.component';
 
 @Component({
   selector: 'log-work',
   templateUrl: './work.component.html',
-  styleUrls: ['./work.component.scss']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
+  imports: [CatAnimationComponent, TramNetworkAnimationComponent, TramAnimationComponent, HoudiniAnimationComponent]
 })
-export class WorkComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class WorkComponent {
 
 }

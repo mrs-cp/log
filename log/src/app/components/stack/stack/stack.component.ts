@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'log-stack',
-  templateUrl: './stack.component.html',
-  styleUrls: ['./stack.component.scss']
+    selector: 'log-stack',
+    templateUrl: './stack.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class StackComponent implements OnInit {
 

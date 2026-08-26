@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'log-tram-network-animation',
   templateUrl: './tram-network-animation.component.html',
-  styleUrls: ['./tram-network-animation.component.scss']
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager
 })
-export class TramNetworkAnimationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class TramNetworkAnimationComponent {
 
 }
