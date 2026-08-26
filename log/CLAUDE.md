@@ -6,8 +6,8 @@ Guidance for Claude Code when working in this repository.
 
 A personal portfolio/CV site (Angular 22, standalone components, no NgModules). Static content,
 no backend, no i18n. Routes: `/home`, `/about`, `/work` (CSS/JS animation demos embedded via
-CodePen iframes), `/links`, `/tech-stack`. This directory (`log/log/log` relative to the git root)
-is the actual app — the git repository root is one level above this folder.
+CodePen iframes), `/links`, `/tech-stack`. This directory (`log` relative to the git root) is the
+actual app — the git repository root is one level above this folder.
 
 ## Commands
 
